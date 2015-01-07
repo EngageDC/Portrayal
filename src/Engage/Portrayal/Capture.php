@@ -1,7 +1,6 @@
 <?php namespace Engage\Portrayal;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Process\ProcessBuilder;
 
 class Capture {
 
@@ -9,17 +8,24 @@ class Capture {
      * Captures a screenshot of the given url and stores it
      * in the defined storage path.
      *
-     * @param  string  $url
-     * @param  string  $outputFilename
+     * @param  string  $url Full url including protocol
+     * @param  string  $storagePath Path to store the image in
+     * @param  string  $timeout Timeout in seconds
      * @return string  Full path and filename for the screenshot
      */
-    public function snap($url, $storagePath)
+    public function snap($url, $storagePath, $timeout = 30)
     {
-        $outputFilename = $storagePath . '/' . sha1($url) . '.jpg';
+        $outputFilename = $storagePath . '/' . sha1($url) . '.png';
 
-        $this->getPhantomProcess($url, $outputFilename)
-            ->setTimeout(10)
+        $process = $this->getPhantomProcess($url, $outputFilename);
+        
+        $process->setTimeout(10)
+            ->setWorkingDirectory(__DIR__)
             ->run();
+
+        if (!$process->isSuccessful()) {
+            throw new Exceptions\CaptureException($process->getErrorOutput());
+        }
 
         return $outputFilename;
     }
@@ -37,7 +43,8 @@ class Capture {
 
         $phantom = __DIR__ . '/bin/' . $system . '/phantomjs' . $this->getExtension($system);
 
-        return new Process($phantom . ' rasterize.js ' . $url, $outputFilename);
+        return (new ProcessBuilder([$phantom, '--ignore-ssl-errors=true', '--ssl-protocol=tlsv1', 'rasterize.js', $url, $outputFilename]))
+                ->getProcess();
     }
 
     /**
