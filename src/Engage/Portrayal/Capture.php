@@ -19,7 +19,7 @@ class Capture {
 
         $process = $this->getPhantomProcess($url, $outputFilename);
         
-        $process->setTimeout(10)
+        $process->setTimeout($timeout)
             ->setWorkingDirectory(__DIR__)
             ->run();
 
