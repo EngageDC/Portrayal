@@ -8,9 +8,9 @@ The library is much inspired by [Laravel Cashier](https://github.com/laravel/cas
 
 ## Installation
 
-Installing this package through Composer. Edit your project's `composer.json` file to require `engage/portrayal`.
+You can install this package through Composer. Edit your project's `composer.json` file to require `engage/portrayal`.
 
-```
+```json
 "require-dev": {
 	"engage/portrayal": "dev-master"
 }
