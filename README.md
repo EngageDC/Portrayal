@@ -6,6 +6,18 @@ This simple, self-contained library allows you to capture screenshots using Phan
 
 The library is much inspired by [Laravel Cashier](https://github.com/laravel/cashier)'s PDF generation process.
 
+## Installation
+
+Installing this package through Composer. Edit your project's `composer.json` file to require `engage/portrayal`.
+
+```
+"require-dev": {
+	"engage/portrayal": "dev-master"
+}
+```
+
+Now run `composer update` from the terminal, and you're good to go!
+
 ## Usage
 ```php
 $capture = new \Engage\Portrayal\Capture;
