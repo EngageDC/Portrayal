@@ -18,7 +18,7 @@ if (phantom.args.length < 2 || phantom.args.length > 3) {
 			window.setTimeout(function () {
 				page.render(output);
 				phantom.exit();
-			}, 200);
+			}, 350);
 		}
 	});
 }
