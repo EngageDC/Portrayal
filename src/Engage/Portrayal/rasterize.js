@@ -1,6 +1,8 @@
 var fs = require('fs'),
 	page = new WebPage(),
 	address, output, size;
+
+page.settings.userAgent = 'Engage/Portrayal 1.0.0';
  
 if (phantom.args.length < 2 || phantom.args.length > 3) {
 	console.log('Usage: rasterize.js URL filename');
