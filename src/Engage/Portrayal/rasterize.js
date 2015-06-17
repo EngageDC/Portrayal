@@ -2,7 +2,7 @@ var fs = require('fs'),
 	page = new WebPage(),
 	address, output, size;
 
-page.settings.userAgent = 'Portrayal (https://github.com/engagedc/portrayal) 1.0.0';
+page.settings.userAgent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
 page.settings.javascriptEnabled = false;
  
 if (phantom.args.length < 2 || phantom.args.length > 3) {
