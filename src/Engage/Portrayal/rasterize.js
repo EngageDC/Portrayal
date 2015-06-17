@@ -11,7 +11,7 @@ if (phantom.args.length < 2 || phantom.args.length > 3) {
 } else {
 	address = phantom.args[0];
 	output = phantom.args[1];
-	page.viewportSize = { width: 1400, height: 800 };
+	page.viewportSize = { width: 1280, height: 800 };
 	page.onConsoleMessage = function(msg) { console.log(msg); };
 	page.open(address, function (status) {
 		if (status !== 'success') {
