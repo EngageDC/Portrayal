@@ -2,7 +2,8 @@ var fs = require('fs'),
 	page = new WebPage(),
 	address, output, size;
 
-page.settings.userAgent = 'Portrayal (https://github.com/engagedc/portrayal) 1.0.0';
+page.settings.userAgent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
+page.settings.javascriptEnabled = false;
  
 if (phantom.args.length < 2 || phantom.args.length > 3) {
 	console.log('Usage: rasterize.js URL filename');
@@ -10,7 +11,7 @@ if (phantom.args.length < 2 || phantom.args.length > 3) {
 } else {
 	address = phantom.args[0];
 	output = phantom.args[1];
-	page.viewportSize = { width: 1280, height: 600 };
+	page.viewportSize = { width: 1280, height: 800 };
 	page.onConsoleMessage = function(msg) { console.log(msg); };
 	page.open(address, function (status) {
 		if (status !== 'success') {
